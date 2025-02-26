@@ -55,6 +55,53 @@
             </ul>
             <p>O resultado preliminar encontra-se no seguinte link: <a href="link-resultados" target="_blank">Resultados</a>.</p>
             <p>O modelo treinado encontra-se no seguinte link: <a href="link-modelo" target="_blank">Modelo Treinado</a>.</p>
+            
+            <h4>Características do Modelo</h4>
+            <ul>
+                <li>Base: ResNet-50 pré-treinada (ImageNet).</li>
+                <li>Camadas finais removidas (mantendo apenas a extração de características).</li>
+                <li>Camadas adicionais: 
+                    <ul>
+                        <li>Global Average Pooling (reduzindo a saída para 2048 neurônios).</li>
+                        <li>Uma cabeça para predição dos valores esperados (mu_head).</li>
+                        <li>Uma cabeça para predição da incerteza (sigma_head), ativada com Softplus.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4>Função de Perda - Log-Verossimilhança Gaussiana</h4>
+            <p>
+                O modelo utiliza uma função de perda baseada em distribuição Gaussiana para estimar a incerteza da predição. A equação utilizada é:
+            </p>
+            <pre>
+L = 0.5 * Σ (log(σ²) + ((y - μ)² / σ²))
+            </pre>
+            <p>Essa abordagem permite que o modelo aprenda não apenas os valores das variáveis acústicas, mas também o nível de incerteza associado às predições.</p>
+
+            <h4>Hiperparâmetros do Treinamento</h4>
+            <ul>
+                <li>Épocas: 50</li>
+                <li>Otimizador: Adam (lr=1e-5)</li>
+                <li>Divisão dos Dados: 80% Treino, 20% Validação</li>
+                <li>Checkpoint: Salvo a cada época</li>
+                <li>GPU utilizada: NVIDIA T4</li>
+            </ul>
+
+            <h4>Treinamento e Validação</h4>
+            <p>
+                Durante o treinamento, o modelo foi avaliado em cada época utilizando a função de perda de log-verossimilhança Gaussiana. O progresso do treinamento e validação foi registrado, gerando um gráfico de perdas ao longo das épocas.
+            </p>
+            <ul>
+                <li>Acurácia no treino: X%</li>
+                <li>Erro de treino: Y</li>
+                <li>Erro de validação: Z</li>
+                <li>Acurácia no teste: W%</li>
+                <li>Erro no teste: V</li>
+            </ul>
+
+            <h4>Visualização das Perdas</h4>
+            <p>O gráfico abaixo mostra a evolução da perda durante o treinamento:</p>
+            <img src="link-grafico" alt="Gráfico de Treinamento e Validação" style="width: 100%; max-width: 600px;">
         </div>
 
         <!-- Espaço reservado para Projeto 2 -->
