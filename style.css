@@ -1,75 +1,137 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modelagem Acústica e Estimação de Parâmetros</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+/* Estilos gerais */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
 
-    <header>
-        <h1>Modelagem Acústica e Estimação de Parâmetros</h1>
-        <nav>
-            <ul>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#dissertacao">Dissertação</a></li>
-                <li><a href="#projetos">Projetos</a></li>
-                <li><a href="#artigos">Artigos publicados</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
-        <div class="language-buttons">
-            <button onclick="translate('en')">English</button>
-            <button onclick="translate('de')">Deutsch</button>
-        </div>
-    </header>
+/* Cabeçalho */
+header {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
 
-    <section id="sobre">
-        <h2>Sobre Mim</h2>
-        <p>Olá! Sou Luis Paulo Albuquerque Guedes, e este repositório reúne os registros da minha dissertação de mestrado em Engenharia Elétrica, na área de Processamento de Sinais de Áudio, desenvolvida na COPPE/UFRJ.</p>
-    </section>
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
 
-    <section id="dissertacao">
-        <h2>Dissertação</h2>
-        <p>Confira os detalhes da versão final da dissertação: <a href="link-da-dissertacao" target="_blank">Acesse aqui</a>.</p>
-    </section>
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
 
-    <section id="contato">
-        <h2>Contato</h2>
-        <ul>
-            <li>
-                <img src="email-icon.png" alt="Email" width="20"> 
-                <a href="mailto:luis.albuquerque@marinha.mil.br">luis.albuquerque@marinha.mil.br</a>
-            </li>
-            <li>
-                <img src="email-icon.png" alt="Email" width="20"> 
-                <a href="mailto:luis.guedes@coppe.ufrj.br">luis.guedes@coppe.ufrj.br</a>
-            </li>
-            <li>
-                <img src="email-icon.png" alt="Email" width="20"> 
-                <a href="mailto:luispauloaguedes@gmail.com">luispauloaguedes@gmail.com</a>
-            </li>
-            <li>
-                <img src="github-icon.png" alt="GitHub" width="20"> 
-                <a href="https://github.com/seuusuario" target="_blank">GitHub</a>
-            </li>
-            <li>
-                <img src="linkedin-icon.png" alt="LinkedIn" width="20"> 
-                <a href="https://www.linkedin.com/in/seuperfil" target="_blank">LinkedIn</a>
-            </li>
-        </ul>
-    </section>
+nav ul li {
+    display: inline;
+}
 
-    <script>
-        function translate(language) {
-            if (language === 'en') {
-                window.location.href = "pagina-ingles.html";
-            } else if (language === 'de') {
-                window.location.href = "pagina-alemao.html";
-            }
-        }
-    </script>
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    transition: background 0.3s;
+}
 
-</body>
-</html>
+nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* Seções */
+section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+section h2 {
+    color: #2c3e50;
+    border-bottom: 3px solid #2c3e50;
+    padding-bottom: 10px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+/* Projetos */
+.projeto {
+    background: #ecf0f1;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.projeto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.projeto h3 a {
+    color: #2980b9;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.projeto h3 a:hover {
+    color: #3498db;
+}
+
+/* Artigos */
+.artigo {
+    background: #f0f0f0;
+    padding: 20px;
+    border-left: 5px solid #2980b9;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.artigo h3 {
+    color: #2c3e50;
+}
+
+/* Contato */
+#contato ul {
+    padding: 0;
+    list-style: none;
+}
+
+#contato ul li {
+    margin: 10px 0;
+}
+
+#contato ul li a {
+    color: #2980b9;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+#contato ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Rodapé */
+footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
