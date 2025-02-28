@@ -51,6 +51,23 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 
+/* Botões de Troca de Idioma */
+header nav button {
+    background-color: #2980b9;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin: 5px;
+}
+
+header nav button:hover {
+    background-color: #3498db;
+}
+
 /* Seções */
 section {
     max-width: 900px;
@@ -154,7 +171,6 @@ section h2 {
     color: #3498db;
     text-decoration: underline;
 }
-
 
 /* Rodapé */
 footer {
