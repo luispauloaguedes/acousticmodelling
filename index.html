@@ -75,15 +75,52 @@
                 Trata-se de versão inicial da dissertação de mestrado sobre estimação de parâmetros acústicos usando modelos de Aprendizagem Profunda (Deep Learning). 
                 Inicialmente, foram geradas 1000 salas com configur....
             <ul>
-               <li>PASSO 1</li>
-            </ul>
-                
+               <li>PASSO 1: GERANDO AS CONFIGURAÇÕES DA SALA</li>
+            </ul>   
                 Inicialmente, as dimensões das salas foram definidas aleatoriamente dentro de um intervalo preestabelecido. O comprimento e a largura variaram entre 3 e 12 metros, enquanto a altura assumiu valores entre 2,5 e 4,5 metros. Esses valores foram arredondados para uma casa decimal para garantir maior precisão nas simulações.
                 Além das dimensões, foram atribuídos coeficientes de difusão para cada superfície da sala. O mesmo valor foi aplicado uniformemente a todas as superfícies e foi sorteado dentro de um intervalo entre 0,2 e 1. Esse coeficiente foi gerado para seis superfícies distintas: quatro paredes, teto e chão. Os valores foram armazenados de acordo com a frequência correspondente, considerando seis faixas padronizadas: 125 Hz, 250 Hz, 500 Hz, 1000 Hz, 2000 Hz e 4000 Hz.
-                Para determinar os coeficientes de absorção, foi utilizado um processo probabilístico apresentado em  <a href="https://drive.google.com/file/d/11VNCIks217v6AZXI_0JtuiTwnnlTSDv-/view?usp=drive_link" download><button>Mean Absorption Estimation from Room Impulse Responses using Virtually-Supervised Learning</button></a></p> a fim de definir perfis distintos para paredes, teto e chão. Em alguns casos, um único valor foi atribuído a todas as superfícies de um mesmo tipo, enquanto em outros, valores diferenciados foram gerados para cada frequência. Esses coeficientes foram estabelecidos a partir de intervalos que variaram conforme o tipo de superfície, refletindo as propriedades acústicas de materiais comuns.
+                Para determinar os coeficientes de absorção, com o fim de definir perfis distintos para paredes, teto e chão, foi utilizado um processo probabilístico apresentado em  <a href="https://drive.google.com/file/d/11VNCIks217v6AZXI_0JtuiTwnnlTSDv-/view?usp=drive_link" download><button>Mean Absorption Estimation from Room Impulse Responses using Virtually-Supervised Learning</button></a></p>. Em alguns casos, um único valor foi atribuído a todas as superfícies de um mesmo tipo, enquanto em outros, valores diferenciados foram gerados para cada frequência. Esses coeficientes foram estabelecidos a partir de intervalos que variaram conforme o tipo de superfície, refletindo as propriedades acústicas de materiais comuns.
                 As paredes puderam apresentar coeficientes de absorção homogêneos ou diferenciados por frequência, variando entre valores baixos, típicos de materiais reflexivos, e valores mais elevados, condizentes com superfícies mais absorventes. O teto e o chão seguiram uma lógica semelhante, com intervalos de absorção distintos de acordo com materiais típicos desses elementos estruturais.
                 Dessa forma, o código gerou automaticamente um conjunto de parâmetros realistas para diferentes configurações de salas, permitindo a simulação de ambientes acústicos diversos com base nas propriedades físicas de suas superfícies.
-                PAREI NO PRIMEIRO CODIGO
+
+             <ul>
+               <li>PASSO 2: GERANDO AS CONFIGURAÇÕES DOS RECEPTORES </li>
+            </ul>
+               O código define uma classe chamada 'util_receiver', responsável por gerar e visualizar a disposição de receptores e microfones em um ambiente tridimensional. Primeiramente, são inicializados atributos para armazenar as informações dos receptores. Em seguida, para cada receptor, é gerado um ponto central (baricentro) dentro de um espaço tridimensional, 
+               garantindo que esteja dentro dos limites definidos pela sala. A partir desse baricentro, são calculadas as posições de dois microfones simetricamente distribuídos ao longo do eixo X, garantindo um espaçamento fixo entre eles. Um vetor de direção perpendicular ao eixo que une os microfones é então gerado, permitindo que a orientação do receptor varie 
+               dentro do plano XY. Após a geração dos receptores, microfones e vetores direcionais, um gráfico tridimensional interativo é construído utilizando a biblioteca Plotly. O layout do gráfico é configurado para exibir os eixos e uma legenda, proporcionando uma visualização clara da distribuição dos elementos no espaço tridimensional.
+
+            <ul>
+               <li>PASSO 3: GERANDO AS CONFIGURAÇÕES DAS FONTES DE FALA </li>
+            </ul>
+               O código define uma classe chamada 'util_source', responsável por gerar e posicionar fontes de som dentro de um ambiente tridimensional. Inicialmente, são listados diferentes tipos de fontes sonoras, como omnidirecional, cardioide e bidirecional. Para criar fontes reais na sala, são geradas coordenadas aleatórias garantindo uma distância mínima segura em relação a um ponto de referência (baricentro). 
+               A primeira fonte sempre será omnidirecional, enquanto as demais são atribuídas aleatoriamente a uma das categorias disponíveis. Além disso, cada fonte recebe um vetor de direção, que pode ser perpendicular ao plano horizontal ou gerado aleatoriamente.
+               No caso das fontes de ruído, são definidos até cinco pontos estratégicos, incluindo posições fixas no centro superior da sala e ao longo das extremidades, enquanto fontes adicionais são posicionadas aleatoriamente dentro dos limites da sala. As direções dessas fontes de ruído podem ser fixas (por exemplo, apontando para baixo no eixo Z) ou geradas aleatoriamente. Cada fonte recebe um ângulo de orientação (yaw) aleatório dentro de um intervalo de -180 a 180 graus para garantir diversidade na orientação espacial. 
+               Para evitar sobreposições ou posicionamentos inadequados, são utilizadas verificações de distância mínima entre as fontes e seus respectivos baricentros. Além disso, vetores perpendiculares são calculados para manter coerência na orientação das fontes, garantindo que suas direções estejam bem distribuídas dentro do espaço tridimensional da sala.
+
+            <ul>
+               <li>PASSO 4: GERANDO AS CONFIGURAÇÕES DAS FONTES DE RUÍDO </li>
+            </ul>
+               O código define uma classe chamada util_source, que é responsável por gerar e posicionar fontes sonoras dentro de um ambiente tridimensional, com foco na criação de fontes de ruído em posições específicas. Primeiramente, a classe possui uma lista de descrições de diferentes tipos de fontes sonoras, incluindo fontes omnidirecionais e direcionais. Para a geração das fontes de ruído, são determinadas coordenadas dentro dos limites da sala, garantindo uma distância mínima de segurança para evitar sobreposições. 
+               As posições dessas fontes são definidas com base em regras específicas, como fontes fixas no teto, fontes laterais posicionadas próximas às paredes e uma fonte localizada perto do chão. Além das posições, cada fonte recebe um vetor de direção, indicando a orientação da propagação do som. Algumas direções são fixas (por exemplo, apontando para baixo no teto), enquanto outras são geradas aleatoriamente para proporcionar diversidade.
+               Após a geração das fontes de ruído, os resultados são visualizados utilizando a biblioteca Plotly. No gráfico tridimensional, cada fonte de ruído é representada por um marcador vermelho, acompanhado de um rótulo indicando sua numeração. Além disso, vetores direcionais são representados por setas azuis tracejadas, indicando a direção da propagação do som. Os eixos da sala são configurados para refletir suas dimensões reais, garantindo uma visualização realista do espaço. Para complementar a análise, os dados das fontes geradas 
+               são organizados em uma tabela formatada utilizando a biblioteca tabulate, apresentando as coordenadas X, Y e Z de cada fonte de ruído de maneira clara e estruturada. Esse código permite tanto a simulação quanto a visualização intuitiva da distribuição de fontes de ruído em um ambiente tridimensional.
+            
+            <ul>
+               <li>PASSO 5: COMPILANDO AS INFORMAÇÕES</li>
+            </ul>
+
+            O código define uma classe chamada conf_files, responsável por gerar configurações de salas para simulações acústicas. Ao ser inicializada, a classe recebe o número de salas a serem geradas e o nome do conjunto de dados. Em seguida, são instanciadas as classes auxiliares responsáveis pela definição dos receptores, fontes sonoras e propriedades da sala. Um diretório de armazenamento é criado para salvar os arquivos de configuração.
+            Inicialmente, são gerados os parâmetros globais da simulação, incluindo a taxa de amostragem, a duração da resposta ao impulso, a ordem de reflexão e a quantidade de raios para o traçado estocástico. Esses parâmetros são armazenados em arquivos nos formatos YAML e JSON. Na etapa de criação das salas, um dicionário é estruturado para armazenar informações sobre as dimensões da sala, coeficientes de absorção e difusão, além das condições ambientais, 
+            como umidade e temperatura. Para cada sala, são geradas posições de receptores e suas respectivas direções, assegurando um espaçamento adequado. Fontes sonoras também são distribuídas dentro do ambiente, garantindo que pelo menos uma delas seja omnidirecional. Além disso, fontes de ruído são posicionadas em locais específicos, como próximos ao teto, lateralmente e perto do chão, simulando diferentes condições acústicas.
+            Ao final do processo, os dados estruturados são armazenados em arquivos YAML e JSON, organizando as informações de cada sala, incluindo os parâmetros de simulação, receptores, fontes sonoras e fontes de ruído. O progresso da geração das salas é monitorado com uma barra de progresso para indicar a conclusão das iterações.
+
+
+
+
+
+
+            
                 Com o objetivo final de desenvolver uma abordagem para a estimativa cega de parâmetros acústicos, este estágio inicial, de natureza experimental e exploratória, consistiu em implementar um modelo RESNET-50 para estimar as seguintes variáveis:
             </p>
             <ul>
