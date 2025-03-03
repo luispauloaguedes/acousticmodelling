@@ -238,6 +238,25 @@
                 A classe 'util_receiver' é responsável por definir e gerar arranjos de microfones em um ambiente tridimensional. Inicialmente, ela armazena os receptores em um dicionário ('dic_receiver'). O método 'mic_defination_array' calcula as posições de dois microfones a partir de um ponto central (barycenter), aplicando uma matriz de rotação para posicioná-los a uma distância fixa de 22.5 cm. O método generate_receivers_rooms distribui aleatoriamente um conjunto de receptores dentro de uma sala, garantindo uma distância mínima das paredes, além de gerar ângulos aleatórios de orientação (yaw, pitch e roll). Ele utiliza o método 'rotation_matrix', que constrói uma matriz de rotação tridimensional com base nesses ângulos, 
                 permitindo a correta orientação dos microfones no espaço. Os resultados incluem as posições dos microfones, os barycenters e os ângulos de rotação, tornando essa classe útil para simulações acústicas e análise de propagação sonora.
 
+             <ul>
+               <li>PASSO 3: GERANDO AS CONFIGURAÇÕES DAS FONTES</li>
+             </ul>
+                A classe 'util_source' é responsável por gerar fontes sonoras dentro de uma sala tridimensional, garantindo posições seguras e evitando sobreposição com o barycenter. Ela contém uma lista de descrições de padrões de captação de microfones, incluindo opções como omnidirecional, cardióide e bidirecional. O método 'generate_source_room' cria fontes reais na sala, garantindo que pelo menos uma delas seja omnidirecional 
+                e posicionando as demais aleatoriamente com diferentes orientações (yaw, pitch e roll). O método 'fake_source_room' realiza um processo semelhante para fontes artificiais, garantindo uma distância mínima entre elas e o barycenter. Ambos os métodos utilizam 'generate_safe_coordinates', que assegura que as fontes estejam dentro dos limites da sala e respeitem uma distância mínima do barycenter antes de serem posicionadas. 
+                Essa abordagem permite a simulação de fontes sonoras em diferentes condições espaciais para análise acústica.
+            <ul>
+               <li>PASSO 4: COMPILANDO AS INFORMAÇÕES</li>
+             </ul>
+               A classe 'conf_files' combina funcionalidades das classes 'util_room', 'util_receiver' e 'util_source' para gerar arquivos de configuração que descrevem salas acústicas, receptores (microfones) e fontes sonoras. No método '__init__', ela recebe o número de salas e o nome do conjunto de dados, inicializando instâncias auxiliares e chamando os métodos 'params_file()' e 'room_file()'. O método 'params_file()' gera um arquivo YAML 
+               contendo os parâmetros da simulação, como taxa de amostragem (48 kHz), ordem de reflexão, e número de raios para o modelo de traçado de raios difuso. O método 'room_file()' cria dicionários com as propriedades de cada sala, incluindo dimensões, coeficientes de absorção e difusão, além da distribuição de receptores e fontes sonoras. Para cada sala, ele posiciona cinco receptores garantindo uma distância mínima das paredes, gera fontes reais e artificiais, 
+               e armazena as configurações em arquivos YAML separados para salas, receptores, fontes e fontes artificiais de ruído. A abordagem facilita a simulação e análise acústica automatizada.
+            
+             <ul>
+               <li>PASSO 5: GERANDO E ARMAZENADOS AS SALAS</li>
+             </ul>
+               A chamada 'conf_files(1000, "test")' cria e configura automaticamente 1000 salas acústicas para simulação, gerando arquivos YAML detalhados com parâmetros da sala, receptores e fontes sonoras. Durante a execução, a classe define dimensões aleatórias para cada sala, calcula coeficientes de absorção e difusão, posiciona cinco receptores respeitando uma distância mínima das paredes e distribui fontes sonoras reais e artificiais, garantindo ao menos uma omnidirecional. 
+               Os dados são organizados em arquivos YAML, incluindo conf_sim_params.yml para parâmetros da simulação, conf_room_setup_2.yml com detalhes das salas, conf_receivers_2.yml para microfones, conf_source_2.yml para fontes reais e conf_noise_source_2.yml para fontes artificiais, permitindo sua aplicação em estudos de propagação sonora e modelagem acústica.
+            
     </section>
 
     
