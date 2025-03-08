@@ -29,12 +29,6 @@ body {
 }
 
 
-<header>
-    <h1>Seu Título Aqui</h1>
-    <button id="language-toggle">🌍 EN/DE</button>
-</header>
-
-
 
 /* Cabeçalho fixo responsivo */
 header {
@@ -47,6 +41,7 @@ header {
     width: 100%;
     z-index: 1000;
     transition: all 0.3s ease-in-out;
+    <button id="language-toggle">🌍 EN/DE</button>
 }
 
 header h1 {
