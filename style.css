@@ -8,75 +8,79 @@ body {
     line-height: 1.6;
 }
 
-/* Cabeçalho */
+/* Cabeçalho fixo responsivo */
 header {
     background: linear-gradient(135deg, #2c3e50, #34495e);
     color: white;
-    padding: 20px;
+    padding: 15px 20px;
     text-align: center;
-    position: sticky;
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
+    transition: all 0.3s ease-in-out;
 }
 
 header h1 {
     margin: 0;
-    font-size: 28px;
+    font-size: 24px;
+}
+
+/* Navegação responsiva */
+nav {
+    margin-top: 10px;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
-    margin: 10px 0 0;
+    margin: 0;
     display: flex;
     justify-content: center;
-    gap: 20px;
-}
-
-nav ul li {
-    display: inline;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
-    padding: 10px 15px;
-    transition: background 0.3s;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
 }
 
 nav ul li a:hover {
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
 }
 
-/* Seções */
+/* Seções principais */
 section {
     max-width: 900px;
-    margin: 40px auto;
-    padding: 30px;
+    margin: 80px auto 40px; /* Ajuste para evitar sobreposição do cabeçalho */
+    padding: 25px;
     background: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
+/* Melhorar espaçamento */
 section h2 {
     color: #2c3e50;
     border-bottom: 3px solid #2c3e50;
-    padding-bottom: 10px;
+    padding-bottom: 8px;
     display: inline-block;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
-/* Projetos */
+/* Estilizar projetos */
 .projeto {
     background: #ecf0f1;
     padding: 20px;
     margin-top: 20px;
     border-radius: 8px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .projeto:hover {
@@ -87,14 +91,26 @@ section h2 {
 .projeto h3 a {
     color: #2980b9;
     text-decoration: none;
-    transition: color 0.3s;
+    font-weight: bold;
 }
 
 .projeto h3 a:hover {
     color: #3498db;
 }
 
-/* Artigos */
+/* Layout flexível para projetos */
+.projetos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.projeto {
+    flex: 1 1 45%;
+    margin: 10px;
+}
+
+/* Melhorar seção de artigos */
 .artigo {
     background: #f0f0f0;
     padding: 20px;
@@ -107,7 +123,7 @@ section h2 {
     color: #2c3e50;
 }
 
-/* Seção de Contato */
+/* Melhorar seção de contato */
 #contato {
     max-width: 900px;
     margin: 40px auto;
@@ -118,18 +134,14 @@ section h2 {
     text-align: center;
 }
 
-#contato h2 {
-    color: #2c3e50;
-    border-bottom: 3px solid #2c3e50;
-    padding-bottom: 10px;
-    display: inline-block;
-    margin-bottom: 20px;
-}
-
+/* Melhor alinhamento */
 #contato ul {
     list-style: none;
     padding: 0;
     margin: 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #contato ul li {
@@ -139,7 +151,10 @@ section h2 {
     margin: 15px 0;
 }
 
+/* Ícones ajustados */
 #contato ul li img {
+    width: 24px;
+    height: 24px;
     margin-right: 10px;
 }
 
@@ -147,7 +162,7 @@ section h2 {
     color: #2980b9;
     text-decoration: none;
     font-size: 18px;
-    transition: color 0.3s;
+    transition: color 0.3s ease;
 }
 
 #contato ul li a:hover {
@@ -155,12 +170,12 @@ section h2 {
     text-decoration: underline;
 }
 
-
-/* Rodapé */
+/* Melhorar responsividade do rodapé */
 footer {
     background: #2c3e50;
     color: white;
     text-align: center;
     padding: 15px;
     margin-top: 40px;
+    font-size: 14px;
 }
