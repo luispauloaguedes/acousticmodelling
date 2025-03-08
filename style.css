@@ -8,6 +8,14 @@ body {
     line-height: 1.6;
 }
 
+.responsive-image {
+    max-width: 100%; /* Garante que a imagem não ultrapasse o container */
+    height: auto; /* Mantém a proporção */
+    display: block; /* Remove espaços extras */
+    margin: 0 auto; /* Centraliza a imagem */
+}
+
+
 /* Cabeçalho fixo responsivo */
 header {
     background: linear-gradient(135deg, #2c3e50, #34495e);
