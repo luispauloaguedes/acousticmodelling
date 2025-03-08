@@ -18,7 +18,7 @@ body {
 /* Ajusta para telas menores (celulares) */
 @media (max-width: 768px) {
     .responsive-image {
-        max-width: 95%;  /* Faz a imagem ocupar quase toda a tela */
+        max-width: 65%;  /* Faz a imagem ocupar quase toda a tela */
     }
 }
 
