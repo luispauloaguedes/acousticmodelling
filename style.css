@@ -9,11 +9,25 @@ body {
 }
 
 .responsive-image {
-    max-width: 100%; /* Garante que a imagem não ultrapasse o container */
-    height: auto; /* Mantém a proporção */
-    display: block; /* Remove espaços extras */
-    margin: 0 auto; /* Centraliza a imagem */
+    max-width: 80%; /* Para telas grandes */
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
+
+/* Ajusta para telas menores (celulares) */
+@media (max-width: 768px) {
+    .responsive-image {
+        max-width: 95%;  /* Faz a imagem ocupar quase toda a tela */
+    }
+}
+
+@media (max-width: 480px) {
+    .responsive-image {
+        max-width: 100%;  /* Para telas muito pequenas, ocupa 100% da largura */
+    }
+}
+
 
 
 /* Cabeçalho fixo responsivo */
