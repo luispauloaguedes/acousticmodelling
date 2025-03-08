@@ -41,7 +41,6 @@ header {
     width: 100%;
     z-index: 1000;
     transition: all 0.3s ease-in-out;
-    <button id="language-toggle">🌍 EN/DE</button>
 }
 
 header h1 {
@@ -202,3 +201,19 @@ footer {
     margin-top: 40px;
     font-size: 14px;
 }
+
+quero que coloque em:
+
+/* Cabeçalho fixo responsivo */
+header {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+}
+
