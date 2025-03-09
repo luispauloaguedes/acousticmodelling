@@ -93,8 +93,13 @@
                 Para determinar os coeficientes de absorção, com o fim de definir perfis distintos para paredes, teto e chão, foi utilizado um processo probabilístico apresentado em  <a href="https://drive.google.com/file/d/11VNCIks217v6AZXI_0JtuiTwnnlTSDv-/view?usp=drive_link" download><button>Mean Absorption Estimation from Room Impulse Responses using Virtually-Supervised Learning</button></a></p> Em alguns casos, um único valor foi atribuído a todas as superfícies de um mesmo tipo, enquanto em outros, valores diferenciados foram gerados para cada frequência. Esses coeficientes foram estabelecidos a partir de intervalos que variaram conforme o tipo de superfície, refletindo as propriedades acústicas de materiais comuns.
                 As paredes puderam apresentar coeficientes de absorção homogêneos ou diferenciados por frequência, variando entre valores baixos, típicos de materiais reflexivos, e valores mais elevados, condizentes com superfícies mais absorventes. O teto e o chão seguiram uma lógica semelhante, com intervalos de absorção distintos de acordo com materiais típicos desses elementos estruturais.
                 Dessa forma, o código gerou automaticamente um conjunto de parâmetros realistas para diferentes configurações de salas, permitindo a simulação de ambientes acústicos diversos com base nas propriedades físicas de suas superfícies.
-
-             <ul>
+             
+            <ul>
+                <img src="3D_room.png" alt="3D Room" class="responsive-image">
+             </ul>
+             
+            
+            <ul>
                <li>PASSO 2: GERANDO AS CONFIGURAÇÕES DOS RECEPTORES </li>
             </ul>
                O código define uma classe chamada 'util_receiver', responsável por gerar e visualizar a disposição de receptores e microfones em um ambiente tridimensional. Primeiramente, são inicializados atributos para armazenar as informações dos receptores. Em seguida, para cada receptor, é gerado um ponto central (baricentro) dentro de um espaço tridimensional, 
@@ -119,6 +124,10 @@
               Essa abordagem garante que a simulação seja realista e contextualizada, permitindo estudos avançados sobre propagação acústica, interferência sonora e inteligibilidade da fala em ambientes fechados. 
             
             <ul>
+             <img src="room_sources.png" alt="3D Room" class="responsive-image">
+            </ul>
+            
+            <ul>
                <li>PASSO 5: COMPILANDO AS INFORMAÇÕES</li>
             </ul>
                O código define uma classe chamada conf_files, responsável por gerar configurações de salas para simulações acústicas. Ao ser inicializada, a classe recebe o número de salas a serem geradas e o nome do conjunto de dados. Em seguida, são instanciadas as classes auxiliares responsáveis pela definição dos receptores, fontes sonoras e propriedades da sala. Um diretório de armazenamento é criado para salvar os arquivos de configuração.
@@ -130,11 +139,7 @@
                <li>PASSO 6: GERANDO E ARMAZENADOS AS SALAS</li>
              </ul>
                 O código cria 1000 salas e salva suas configurações nos formatos YAML e JSON. Para cada sala, são geradas dimensões, receptores, fontes sonoras (incluindo uma omnidirecional) e fontes de ruído posicionadas estrategicamente. Os dados são armazenados em arquivos organizados, e o progresso é exibido com tqdm.
-             <ul>
-             <img src="3D_room.png" alt="3D Room" class="responsive-image">
-
-
-             </ul>
+             
                 Com o objetivo final de desenvolver uma abordagem para a estimativa cega de parâmetros acústicos, este estágio inicial, de natureza experimental e exploratória, consistiu em implementar um modelo RESNET-50 para estimar as seguintes variáveis:
             </p>
             <ul>
