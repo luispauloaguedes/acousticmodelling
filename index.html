@@ -175,12 +175,14 @@
 
             <ul>
                <li>ETAPA III: FILTRAGEM DAS RESPOSTAS AO IMPULSO DE SALAS GERADAS </li>
-             </ul>  
+            </ul>  
 
             Segundo o desenvolevor da biblioteca de geração de respostas ao impulso, o gpuRIR não suporta absorção dependente de frequência (resposta no fórum de dúvidas do GitHub da biblioteca em: <a href="https://github.com/DavidDiazGuerra/gpuRIR/issues/70#issuecomment-2541267155" download><button> Fórum de dúvidas da biblioteca gpuRIR</button></a> . Dessa maneira, foi adotada a seguinte estratégia:
 
-            
-
+            <ul>
+            Inicialmente, foi implementado um código que carrega os arquivos contendo os sinais de RIR extraindo as informações relevantes, como os índices das fontes e receptores. Em seguida, foi implementada a biblioteca PyOctaveBand para aplicar um filtro de oitava em cada RIR, 
+            considerando a frequência correspondente a cada arquivo. Após a filtragem, as respostas ao impulso foram somadas para cada combinação de fonte e receptor. O código então normaliza os sinais processados e os converte para o formato de 16 bits antes de armazená-los como arquivos .wav.
+            </ul> 
 
             
 
