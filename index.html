@@ -82,11 +82,11 @@
                 
                 A ETAPA I: CONFIGURAÇÃO DOS AMBIENTES; ETAPA II: GERAÇÃO DE RESPOSTAS AO IMPULSO DE SALAS (RIS); ETAPA III: IMPLEMENTAÇÃO E TREINAMENTO DOS MODELOS; ETAPA III: TESTE DOS MODELOS; ETAPA IV: AVALIAÇÃO DAS MÉTRICAS DOS MODELOS.
             <ul>
-               <li>ETAPA I: CONFIGURAÇÃO DOS AMBIENTES</li>
+            <li>ETAPA I: CONFIGURAÇÃO DOS AMBIENTES</li>
             </ul>  
             
             <ul>
-               <li>PASSO 1: GERANDO AS CONFIGURAÇÕES DA SALA</li>
+            <li>PASSO 1: GERANDO AS CONFIGURAÇÕES DA SALA</li>
             </ul>   
                 Inicialmente, as dimensões das salas foram definidas aleatoriamente dentro de um intervalo preestabelecido. O comprimento e a largura variaram entre 3 e 12 metros, enquanto a altura assumiu valores entre 2,5 e 4,5 metros. Esses valores foram arredondados para uma casa decimal para garantir maior precisão nas simulações.
                 Além das dimensões, foram atribuídos coeficientes de difusão para cada superfície da sala. O mesmo valor foi aplicado uniformemente a todas as superfícies e foi sorteado dentro de um intervalo entre 0,2 e 1. Esse coeficiente foi gerado para seis superfícies distintas: quatro paredes, teto e chão. Os valores foram armazenados de acordo com a frequência correspondente, considerando seis faixas padronizadas: 125 Hz, 250 Hz, 500 Hz, 1000 Hz, 2000 Hz e 4000 Hz.
@@ -95,13 +95,13 @@
                 Dessa forma, o código gerou automaticamente um conjunto de parâmetros realistas para diferentes configurações de salas, permitindo a simulação de ambientes acústicos diversos com base nas propriedades físicas de suas superfícies.
              
             <ul>
-                <img src="room_3D.png" alt="3D Room" class="responsive-image">
-                <figcaption>Visualização 3D de uma amostra de sala simulada</figcaption>
+            <img src="room_3D.png" alt="3D Room" class="responsive-image">
+            <figcaption>Visualização 3D de uma amostra de sala simulada</figcaption>
             </ul>
              
             
             <ul>
-               <li>PASSO 2: GERANDO AS CONFIGURAÇÕES DOS RECEPTORES </li>
+            <li>PASSO 2: GERANDO AS CONFIGURAÇÕES DOS RECEPTORES </li>
             </ul>
                O código define uma classe chamada 'util_receiver', responsável por gerar e visualizar a disposição de receptores e microfones em um ambiente tridimensional. Primeiramente, são inicializados atributos para armazenar as informações dos receptores. Em seguida, para cada receptor, é gerado um ponto central (baricentro) dentro de um espaço tridimensional, 
                garantindo que esteja dentro dos limites definidos pela sala. A partir desse baricentro, são calculadas as posições de dois microfones simetricamente distribuídos ao longo do eixo X, garantindo um espaçamento fixo entre eles. Um vetor de direção perpendicular ao eixo que une os microfones é então gerado, permitindo que a orientação do receptor varie 
@@ -126,8 +126,8 @@
               Essa abordagem garante que a simulação seja realista e contextualizada, permitindo estudos avançados sobre propagação acústica, interferência sonora e inteligibilidade da fala em ambientes fechados. 
             
             <ul>
-             <img src="room_sources.png" alt="3D Room" class="responsive-image">
-             <figcaption>Visualização 3D de uma amostra de sala simulada com microfones, fontes de fala e de ruído</figcaption>
+            <img src="room_sources.png" alt="3D Room" class="responsive-image">
+            <figcaption>Visualização 3D de uma amostra de sala simulada com microfones, fontes de fala e de ruído</figcaption>
             </ul>
             
             <ul>
@@ -138,40 +138,40 @@
                como umidade e temperatura. Para cada sala, são geradas posições de receptores e suas respectivas direções, assegurando um espaçamento adequado. Fontes sonoras também são distribuídas dentro do ambiente, garantindo que pelo menos uma delas seja omnidirecional. Além disso, fontes de ruído são posicionadas em locais específicos, como próximos ao teto, lateralmente e perto do chão, simulando diferentes condições acústicas.
                Ao final do processo, os dados estruturados são armazenados em arquivos YAML e JSON, organizando as informações de cada sala, incluindo os parâmetros de simulação, receptores, fontes sonoras e fontes de ruído. O progresso da geração das salas é monitorado com uma barra de progresso para indicar a conclusão das iterações.
             
-             <ul>
+            <ul>
                <li>PASSO 6: GERANDO E ARMAZENADOS AS SALAS</li>
-             </ul>
+            </ul>
                 O código cria 1000 salas e salva suas configurações nos formatos YAML e JSON. Para cada sala, são geradas dimensões, receptores, fontes sonoras (incluindo uma omnidirecional) e fontes de ruído posicionadas estrategicamente. Os dados são armazenados em arquivos organizados, e o progresso é exibido com tqdm.
              
-             <ul>
+            <ul>
                <li>ETAPA II: GERAÇÃO DE RESPOSTAS AO IMPULSO DE SALAS (RIS)</li>
-             </ul>  
+            </ul>  
 
                 A segunda etapa teve como objetivo a implementação da biblioteca gpuRIR, uma ferramenta de código aberto em Python para a simulação de Respostas ao Impulso de Salas (RIRs). Essa biblioteca utiliza o Image Source Method (ISM) com aceleração via GPU, 
                 permitindo o cálculo eficiente de RIRs entre múltiplas fontes e receptores em paralelo por meio de GPUs CUDA. Comparada às implementações tradicionais baseadas em CPU, a gpuRIR oferece um desempenho significativamente superior, sendo aproximadamente 100 vezes mais rápida. A biblioteca gpuRIR está disponível em: <a href="https://github.com/DavidDiazGuerra/gpuRIR" download><button>gpuRIR</button></a>
                 
-              <ul>
+            <ul>
                 O artigo que aborda a biblioteca gpuRIR pode ser encontrado em:  <a href="https://link.springer.com/article/10.1007/s11042-020-09905-3" download><button>gpuRIR: A python library for room impulse response simulation with GPU acceleration</button></a>
-              </ul> 
-              <ul>
-              <img src="gpuRIR.png" alt="3D Room" class="responsive-image">
-              <figcaption>Biblioteca gpuRIR</figcaption>
-              </ul>
+            </ul> 
+            <ul>
+            <img src="gpuRIR.png" alt="3D Room" class="responsive-image">
+            <figcaption>Biblioteca gpuRIR</figcaption>
+            </ul>
 
-              <ul>
+            <ul>
                 A biblioteca gpuRIR gera RIRs para diferentes configurações acústicas utilizando a biblioteca gpuRIR. Primeiramente, ele carrega os dados das salas, fontes sonoras e receptores a partir de arquivos Parquet. Com base nas dimensões da sala, coeficientes de absorção e parâmetros acústicos como T60, C50 e DRR, o código calcula os coeficientes de reflexão das superfícies e determina a ordem de imagem necessária para a simulação. Em seguida, para cada frequência especificada (125, 250, 500, 1000, 2000 e 4000 Hz), são geradas RIRs para todas as fontes sonoras, 
                 levando em consideração o padrão direcional das fontes e microfones. As RIRs são simuladas separadamente para dois conjuntos de microfones e, ao final do processamento, os resultados são armazenados em arquivos Parquet organizados por frequência. O código também exibe o número de fontes e receptores presentes na sala selecionada antes de finalizar a execução.
-              </ul>
+            </ul>
 
-              <ul>
-              <img src="RIR_sources.png" alt="3D Room" class="responsive-image">
-              <figcaption>RIRs geradas para fontes de fala de room_0</figcaption>
-              </ul>
+            <ul>
+            <img src="RIR_sources.png" alt="3D Room" class="responsive-image">
+            <figcaption>RIRs geradas para fontes de fala de room_0</figcaption>
+            </ul>
 
-              <ul>
-              <img src="RIR_noises.png" alt="3D Room" class="responsive-image">
-              <figcaption>RIRs geradas para fontes de ruído de room_0</figcaption>
-              </ul>
+            <ul>
+            <img src="RIR_noises.png" alt="3D Room" class="responsive-image">
+            <figcaption>RIRs geradas para fontes de ruído de room_0</figcaption>
+            </ul>
 
             <ul>
                <li>ETAPA III: FILTRAGEM DAS RESPOSTAS AO IMPULSO DE SALAS GERADAS </li>
@@ -187,7 +187,7 @@
             considerando a frequência correspondente a cada arquivo. Após a filtragem, as respostas ao impulso foram somadas para cada combinação de fonte e receptor. O código então normaliza os sinais processados e os converte para o formato de 16 bits antes de armazená-los como arquivos .wav.
             </ul> 
         
-                Com o objetivo final de desenvolver uma abordagem para a estimativa cega de parâmetros acústicos, este estágio inicial, de natureza experimental e exploratória, consistiu em implementar um modelo RESNET-50 para estimar as seguintes variáveis:
+            Com o objetivo final de desenvolver uma abordagem para a estimativa cega de parâmetros acústicos, este estágio inicial, de natureza experimental e exploratória, consistiu em implementar um modelo RESNET-50 para estimar as seguintes variáveis:
             </p>
             <ul>
                <li>Área Superficial (m²)</li>
