@@ -61,8 +61,8 @@
     </style>
 
     <section id="projetos">
-        <h2>Meus Projetos</h2>
-        <p>Trata-se este repositório dos registros do progresso das simulações acústicas da dissertação de mestrado sobre estimação de parâmetros acústicos usando modelos de Aprendizagem Profunda (Deep Learning).  </p>
+            <h2>Meus Projetos</h2>
+            <p>Trata-se este repositório dos registros do progresso das simulações acústicas da dissertação de mestrado sobre estimação de parâmetros acústicos usando modelos de Aprendizagem Profunda (Deep Learning).  </p>
         
           <!-- Espaço reservado para Projeto 3 -->
         <div class="projeto">
@@ -108,7 +108,7 @@
                dentro do plano XY. Após a geração dos receptores, microfones e vetores direcionais, um gráfico tridimensional interativo é construído utilizando a biblioteca Plotly. O layout do gráfico é configurado para exibir os eixos e uma legenda, proporcionando uma visualização clara da distribuição dos elementos no espaço tridimensional.
 
             <ul>
-               <li>PASSO 3: GERANDO AS CONFIGURAÇÕES DAS FONTES DE FALA </li>
+            <li>PASSO 3: GERANDO AS CONFIGURAÇÕES DAS FONTES DE FALA </li>
             </ul>
                O código define uma classe chamada 'util_source', responsável por gerar e posicionar fontes de som dentro de um ambiente tridimensional. Inicialmente, são listados diferentes tipos de fontes sonoras, como omnidirecional, cardioide e bidirecional. Para criar fontes reais na sala, são geradas coordenadas aleatórias garantindo uma distância mínima segura em relação a um ponto de referência (baricentro). 
                A primeira fonte sempre será omnidirecional, enquanto as demais são atribuídas aleatoriamente a uma das categorias disponíveis. Além disso, cada fonte recebe um vetor de direção, que pode ser perpendicular ao plano horizontal ou gerado aleatoriamente.
@@ -116,7 +116,7 @@
                Para evitar sobreposições ou posicionamentos inadequados, são utilizadas verificações de distância mínima entre as fontes e seus respectivos baricentros. Além disso, vetores perpendiculares são calculados para manter coerência na orientação das fontes, garantindo que suas direções estejam bem distribuídas dentro do espaço tridimensional da sala.
 
             <ul>
-               <li>PASSO 4: GERANDO AS CONFIGURAÇÕES DAS FONTES DE RUÍDO </li>
+            <li>PASSO 4: GERANDO AS CONFIGURAÇÕES DAS FONTES DE RUÍDO </li>
             </ul>
 
               O código gera e visualiza fontes de ruído dentro de uma sala tridimensional simulada, associando cada fonte a um arquivo de som específico e a uma área de atuação realista. A classe util_source posiciona estrategicamente os ruídos no ambiente, garantindo que sua distribuição reflita situações reais. Cada ruído possui um intervalo de posicionamento definido no código, assegurando coerência espacial com sua fonte original.
@@ -131,7 +131,7 @@
             </ul>
             
             <ul>
-               <li>PASSO 5: COMPILANDO AS INFORMAÇÕES</li>
+            <li>PASSO 5: COMPILANDO AS INFORMAÇÕES</li>
             </ul>
                O código define uma classe chamada conf_files, responsável por gerar configurações de salas para simulações acústicas. Ao ser inicializada, a classe recebe o número de salas a serem geradas e o nome do conjunto de dados. Em seguida, são instanciadas as classes auxiliares responsáveis pela definição dos receptores, fontes sonoras e propriedades da sala. Um diretório de armazenamento é criado para salvar os arquivos de configuração.
                Inicialmente, são gerados os parâmetros globais da simulação, incluindo a taxa de amostragem, a duração da resposta ao impulso, a ordem de reflexão e a quantidade de raios para o traçado estocástico. Esses parâmetros são armazenados em arquivos nos formatos YAML e JSON. Na etapa de criação das salas, um dicionário é estruturado para armazenar informações sobre as dimensões da sala, coeficientes de absorção e difusão, além das condições ambientais, 
@@ -139,12 +139,12 @@
                Ao final do processo, os dados estruturados são armazenados em arquivos YAML e JSON, organizando as informações de cada sala, incluindo os parâmetros de simulação, receptores, fontes sonoras e fontes de ruído. O progresso da geração das salas é monitorado com uma barra de progresso para indicar a conclusão das iterações.
             
             <ul>
-               <li>PASSO 6: GERANDO E ARMAZENADOS AS SALAS</li>
+            <li>PASSO 6: GERANDO E ARMAZENADOS AS SALAS</li>
             </ul>
                 O código cria 1000 salas e salva suas configurações nos formatos YAML e JSON. Para cada sala, são geradas dimensões, receptores, fontes sonoras (incluindo uma omnidirecional) e fontes de ruído posicionadas estrategicamente. Os dados são armazenados em arquivos organizados, e o progresso é exibido com tqdm.
              
             <ul>
-               <li>ETAPA II: GERAÇÃO DE RESPOSTAS AO IMPULSO DE SALAS (RIS)</li>
+            <li>ETAPA II: GERAÇÃO DE RESPOSTAS AO IMPULSO DE SALAS (RIS)</li>
             </ul>  
 
                 A segunda etapa teve como objetivo a implementação da biblioteca gpuRIR, uma ferramenta de código aberto em Python para a simulação de Respostas ao Impulso de Salas (RIRs). Essa biblioteca utiliza o Image Source Method (ISM) com aceleração via GPU, 
@@ -174,7 +174,7 @@
             </ul>
 
             <ul>
-               <li>ETAPA III: FILTRAGEM DAS RESPOSTAS AO IMPULSO DE SALAS GERADAS </li>
+            <li>ETAPA III: FILTRAGEM DAS RESPOSTAS AO IMPULSO DE SALAS GERADAS </li>
             </ul>  
             <ul>
             Segundo o desenvolevor da biblioteca de geração de respostas ao impulso, o gpuRIR não suporta absorção dependente de frequência (resposta do desenvolvedor sobre o assunto no fórum de dúvidas do GitHub da biblioteca, disponível em: <a href="https://github.com/DavidDiazGuerra/gpuRIR/issues/70#issuecomment-2541267155" download><button> Fórum de dúvidas da biblioteca gpuRIR</button></a> . 
@@ -186,6 +186,19 @@
             Inicialmente, foi implementado um código que carrega os arquivos contendo os sinais de RIR extraindo as informações relevantes, como os índices das fontes e receptores. Em seguida, foi implementada a biblioteca PyOctaveBand (disponível em: <a href="https://github.com/jmrplens/PyOctaveBand" download><button>Biblioteca PyOctaveBand</button></a>) para aplicar um filtro de oitava em cada RIR, 
             considerando a frequência correspondente a cada arquivo. Após a filtragem, as respostas ao impulso foram somadas para cada combinação de fonte e receptor. O código então normaliza os sinais processados e os converte para o formato de 16 bits antes de armazená-los como arquivos .wav.
             </ul> 
+
+            <ul>
+            <img src="RIR_noises.png" alt="3D Room" class="responsive-image">
+            <figcaption>RIRs geradas para fontes de ruído de room_0</figcaption>
+            </ul>
+
+
+
+
+
+
+
+            
         
             Com o objetivo final de desenvolver uma abordagem para a estimativa cega de parâmetros acústicos, este estágio inicial, de natureza experimental e exploratória, consistiu em implementar um modelo RESNET-50 para estimar as seguintes variáveis:
             </p>
