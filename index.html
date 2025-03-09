@@ -163,11 +163,16 @@
                 levando em consideração o padrão direcional das fontes e microfones. As RIRs são simuladas separadamente para dois conjuntos de microfones e, ao final do processamento, os resultados são armazenados em arquivos Parquet organizados por frequência. O código também exibe o número de fontes e receptores presentes na sala selecionada antes de finalizar a execução.
               </ul>
 
-
               <ul>
-              <img src="room_sources.png" alt="3D Room" class="responsive-image">
-              <figcaption>Visualização 3D de uma amostra de sala simulada com microfones, fontes de fala e de ruído</figcaption>
+              <img src="RIR_sources.png" alt="3D Room" class="responsive-image">
+              <figcaption>RIRs geradas para fontes de fala</figcaption>
               </ul>
+
+             <ul>
+              <img src="RIR_noises" alt="3D Room" class="responsive-image">
+              <figcaption>RIRs geradas para fontes de ruído</figcaption>
+              </ul>
+            
             
     
                 Com o objetivo final de desenvolver uma abordagem para a estimativa cega de parâmetros acústicos, este estágio inicial, de natureza experimental e exploratória, consistiu em implementar um modelo RESNET-50 para estimar as seguintes variáveis:
