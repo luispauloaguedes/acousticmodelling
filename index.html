@@ -151,12 +151,24 @@
                 permitindo o cálculo eficiente de RIRs entre múltiplas fontes e receptores em paralelo por meio de GPUs CUDA. Comparada às implementações tradicionais baseadas em CPU, a gpuRIR oferece um desempenho significativamente superior, sendo aproximadamente 100 vezes mais rápida. A biblioteca gpuRIR está disponível em: <a href="https://github.com/DavidDiazGuerra/gpuRIR" download><button>gpuRIR</button></a>
                 
               <ul>
-                O artigo que aborda a biblioteca gpuRIR pode ser encontrado em:  <a href="https://link.springer.com/article/10.1007/s11042-020-09905-3" download><button>Artigo: gpuRIR: A python library for room impulse response simulation with GPU acceleration</button></a>
+                O artigo que aborda a biblioteca gpuRIR pode ser encontrado em:  <a href="https://link.springer.com/article/10.1007/s11042-020-09905-3" download><button>gpuRIR: A python library for room impulse response simulation with GPU acceleration</button></a>
               </ul> 
               <ul>
               <img src="gpuRIR.png" alt="3D Room" class="responsive-image">
               <figcaption>Biblioteca gpuRIR</figcaption>
               </ul>
+
+              <ul>
+                A biblioteca gpuRIR gera RIRs para diferentes configurações acústicas utilizando a biblioteca gpuRIR. Primeiramente, ele carrega os dados das salas, fontes sonoras e receptores a partir de arquivos Parquet. Com base nas dimensões da sala, coeficientes de absorção e parâmetros acústicos como T60, C50 e DRR, o código calcula os coeficientes de reflexão das superfícies e determina a ordem de imagem necessária para a simulação. Em seguida, para cada frequência especificada (125, 250, 500, 1000, 2000 e 4000 Hz), são geradas RIRs para todas as fontes sonoras, 
+                levando em consideração o padrão direcional das fontes e microfones. As RIRs são simuladas separadamente para dois conjuntos de microfones e, ao final do processamento, os resultados são armazenados em arquivos Parquet organizados por frequência. O código também exibe o número de fontes e receptores presentes na sala selecionada antes de finalizar a execução.
+              </ul>
+
+
+              <ul>
+              <img src="room_sources.png" alt="3D Room" class="responsive-image">
+              <figcaption>Visualização 3D de uma amostra de sala simulada com microfones, fontes de fala e de ruído</figcaption>
+              </ul>
+            
     
                 Com o objetivo final de desenvolver uma abordagem para a estimativa cega de parâmetros acústicos, este estágio inicial, de natureza experimental e exploratória, consistiu em implementar um modelo RESNET-50 para estimar as seguintes variáveis:
             </p>
