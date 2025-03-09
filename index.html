@@ -209,7 +209,10 @@
             <li>ETAPA IV: CONVOLUÇÃO DE RIS COM ÁUDIOS ANECÓICOS E MISTURA</li>
             </ul>  
 
-            <ul>1. Configurações Iniciais</<ul>>
+            <ul>
+            <li>1. Configurações Iniciais</li>
+            </ul>
+            
             <ul>
             <li>Define as taxas de amostragem para diferentes tipos de áudio: RIRs (48 kHz), fala (16 kHz) e ruídos (44.1 kHz).</li>
             <li>Estabelece uma duração de áudio de 5 segundos.</li>
@@ -217,40 +220,56 @@
             <li>Especifica os caminhos para os arquivos de fala, respostas ao impulso e ruídos.</li>
             </ul>
     
-            <ul>2. Carregamento de Áudio</ul>
+            <ul>
+            <li>2. Carregamento de Áudio</li>
+            </ul>
+            
             <ul>
             <li>A função <code>load_audio()</code> carrega arquivos de áudio de fala e ruído, realizando a reamostragem quando necessário.</li>
             <li>A função <code>load_rir()</code> carrega e reamostra as respostas ao impulso.</li>
             </ul>
     
-            <ul>3. Processamento de Convolução</ul>
             <ul>
+            <li>3. Processamento de Convolução</li>
+            </ul>
+            <ul>
+                
             <li>A função <code>convolve_audio_with_rir()</code> realiza a convolução do áudio de entrada com a RIR correspondente.</li>
             <li>A função <code>pad_or_trim_audio()</code> ajusta a duração do áudio convoluído para 5 segundos.</li>
             <li>A função <code>normalize_audio()</code> normaliza os sinais.</li>
             </ul>
     
-            <ul>4. Seleção e Convolução do Sinal de Fala</ul>
+            <ul>
+            <li>4. Seleção e Convolução do Sinal de Fala</li>
+            </ul>
+            
             <ul>
             <li>O código identifica as fontes sonoras e os receptores disponíveis.</li>
             <li>O usuário escolhe uma fonte e um receptor para processar os sinais.</li>
             <li>Um arquivo de fala é selecionado aleatoriamente e convoluído com as RIRs dos dois microfones.</li>
             </ul>
     
-            <ul>5. Adição de Ruído</ul>
+            <ul>
+            <li>5. Adição de Ruído</li>
+            </ul>
             <ul>
             <li>Um SNR aleatório entre 5 e 60 dB é sorteado.</li>
             <li>Os arquivos de ruído são carregados e convoluídos com as RIRs correspondentes.</li>
             <li>O ruído é escalado para atingir o SNR desejado antes de ser somado ao sinal de fala.</li>
             </ul>
     
-            <ul>6. Geração e Armazenamento do Áudio Processado</ul>
+            <ul>
+            <li>6. Geração e Armazenamento do Áudio Processado</li>
+            </ul>
+            
             <ul>
             <li>Os sinais misturados são normalizados.</li>
             <li>Os arquivos resultantes são salvos em formato WAV nos diretórios especificados.</li>
             </ul>
     
-            <ul>7. Cálculo e Exibição de Métricas</ul>
+            <ul>
+            <li>7. Cálculo e Exibição de Métricas</li>
+            </ul>
             <ul>
             <li>O código calcula o SNR real dos sinais e os exibe em uma tabela.</li>
             <li>São geradas visualizações da forma de onda e do espectrograma.</li>
