@@ -324,6 +324,18 @@
             </ul>
 
 
+            <ul>
+            <li>ETAPA V: CÁLCULO ANALÍTICO DE RT60</li>
+            </ul>  
+
+            <ul>
+            O código processa parâmetros acústicos de salas a partir de arquivos contendo informações sobre dimensões e coeficientes de absorção sonora, calculando os tempos de reverberação (T60) utilizando os modelos de Sabine, Eyring e Millington, além do NRC (Noise Reduction Coefficient). 
+            Inicialmente, são definidas funções matemáticas para calcular a absorção média, o NRC e os tempos de reverberação com base em diferentes modelos, considerando a área superficial, o volume e os coeficientes de absorção das salas. O código verifica a existência do arquivo absorption_results.csv (/content/drive/MyDrive/NOVA_parametros/absorption_results.csv), responsável por armazenar a absorção média para cada frequência específica (125 Hz, 250 Hz, 500 Hz, 1000 Hz, 2000 Hz e 4000 Hz). Caso o arquivo não exista, um DataFrame vazio é criado com as colunas esperadas, garantindo que os cálculos possam ser realizados corretamente. Em seguida, os dados das salas são carregados a partir do arquivo rooms.parquet, e os tempos de reverberação são calculados para cada frequência com base na absorção média registrada no arquivo de absorção. Por fim, os resultados são convertidos em um DataFrame do Pandas e exportados para um arquivo CSV, permitindo a análise detalhada dos tempos de reverberação e outros parâmetros acústicos de cada ambiente.
+            </ul>  
+
+           
+
+
 
             
    
