@@ -333,6 +333,90 @@
             Inicialmente, são definidas funções matemáticas para calcular a absorção média, o NRC e os tempos de reverberação com base em diferentes modelos, considerando a área superficial, o volume e os coeficientes de absorção das salas. A partir do arquivo absorption_results.csv, aque é responsável por armazenar a absorção média para cada frequência específica (125 Hz, 250 Hz, 500 Hz, 1000 Hz, 2000 Hz e 4000 Hz), e do arquivo rooms.parquet, os tempos de reverberação são calculados para cada frequência com base na absorção média registrada no arquivo de absorção. 
             </ul>  
 
+            <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parâmetros Acústicos e Cálculo do Tempo de Reverberação</title>
+    <script type="text/javascript" async
+        src="https://polyfill.io/v3/polyfill.min.js?features=es6">
+    </script>
+    <script type="text/javascript" async
+        id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <h1>Parâmetros Acústicos e Cálculo do Tempo de Reverberação</h1>
+
+    <p>
+        O código processa parâmetros acústicos de salas a partir de arquivos contendo informações sobre dimensões e coeficientes de absorção sonora, 
+        calculando os tempos de reverberação (<b>T60</b>) utilizando os modelos de <b>Sabine</b>, <b>Eyring</b> e <b>Millington</b>, 
+        além do <b>NRC (Noise Reduction Coefficient)</b>.
+    </p>
+
+    <h2>1. Absorção Média</h2>
+    <p>
+        O código verifica a existência do arquivo <code>absorption_results.csv</code> (<b>/content/drive/MyDrive/NOVA_parametros/absorption_results.csv</b>), 
+        responsável por armazenar a absorção média para cada frequência específica (<b>125 Hz, 250 Hz, 500 Hz, 1000 Hz, 2000 Hz e 4000 Hz</b>). 
+        Caso o arquivo não exista, um <b>DataFrame vazio</b> é criado com as colunas esperadas, garantindo que os cálculos possam ser realizados corretamente.
+    </p>
+    <p>
+        A absorção média ponderada das superfícies da sala é calculada por:
+    </p>
+    <p>
+        \[
+        \alpha_{média} = \frac{\sum S_i \alpha_i}{\sum S_i}
+        \]
+    </p>
+    <p>Onde:</p>
+    <ul>
+        <li>\( S_i \) = área de cada superfície</li>
+        <li>\( \alpha_i \) = coeficiente de absorção da superfície</li>
+    </ul>
+
+    <h2>2. Tempo de Reverberação (T60)</h2>
+    <p>
+        O <b>tempo de reverberação</b> representa o tempo necessário para que o som em um ambiente 
+        <b>diminua em 60 dB</b> após a fonte sonora ser desligada.
+    </p>
+
+    <h3> Fórmula de Sabine</h3>
+    <p>
+        \[
+        T_{60} = \frac{24 \ln(10) \cdot V}{c \cdot (S \cdot \alpha)}
+        \]
+    </p>
+    <p>Onde:</p>
+    <ul>
+        <li>\( V \) = volume da sala (m³)</li>
+        <li>\( c \) = velocidade do som (m/s)</li>
+        <li>\( S \) = área total das superfícies (m²)</li>
+        <li>\( \alpha \) = coeficiente de absorção médio</li>
+    </ul>
+
+    <h3> Fórmula de Eyring</h3>
+    <p>
+        \[
+        T_{60} = \frac{24 \ln(10) \cdot V}{c \cdot (-S \ln(1 - \alpha))}
+        \]
+    </p>
+
+    <h3> Fórmula de Millington</h3>
+    <p>
+        \[
+        T_{60} = \frac{24 \ln(10) \cdot V}{c \cdot \sum (-S_i \ln(1 - \alpha_i))}
+        \]
+    </p>
+
+    <h2>3. Processamento dos Dados</h2>
+    <p>
+        Os dados das salas são carregados a partir do arquivo <code>rooms.parquet</code>, 
+        e os tempos de reverberação são calculados para cada frequência com base na absorção média registrada no arquivo de absorção.
+        Os resultados são convertidos em um <b>DataFrame do Pandas</b> e exportados para um <b>arquivo CSV</b>, permitindo a análise detalhada 
+        dos tempos de reverberação e outros parâmetros acústicos de cada ambiente.
+    </p>
+
+</body>
+
            
 
 
