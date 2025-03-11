@@ -352,9 +352,10 @@
         calculando os tempos de reverberação (<b>T60</b>) utilizando os modelos de <b>Sabine</b>, <b>Eyring</b> e <b>Millington</b>, 
         além do <b>NRC (Noise Reduction Coefficient)</b>.
     </p>
-
-    <h2>1. Absorção Média</h2>
-    <p>
+    
+    <ul>
+    <b>1. Absorção Média</b>
+    </ul>
         O código verifica a existência do arquivo <code>absorption_results.csv</code> (<b>/content/drive/MyDrive/NOVA_parametros/absorption_results.csv</b>), 
         responsável por armazenar a absorção média para cada frequência específica (<b>125 Hz, 250 Hz, 500 Hz, 1000 Hz, 2000 Hz e 4000 Hz</b>). 
         Caso o arquivo não exista, um <b>DataFrame vazio</b> é criado com as colunas esperadas, garantindo que os cálculos possam ser realizados corretamente.
@@ -373,13 +374,15 @@
         <li>\( \alpha_i \) = coeficiente de absorção da superfície</li>
     </ul>
 
-    <h2>2. Tempo de Reverberação (T60)</h2>
+    <ul>
+    <b>2. Tempo de Reverberação (T60)</b>
+    </ul>
     <p>
         O <b>tempo de reverberação</b> representa o tempo necessário para que o som em um ambiente 
         <b>diminua em 60 dB</b> após a fonte sonora ser desligada.
     </p>
 
-    <h3> Fórmula de Sabine</h3>
+     <ul> Fórmula de Sabine</ul>
     <p>
         \[
         T_{60} = \frac{24 \ln(10) \cdot V}{c \cdot (S \cdot \alpha)}
@@ -393,26 +396,18 @@
         <li>\( \alpha \) = coeficiente de absorção médio</li>
     </ul>
 
-    <h3> Fórmula de Eyring</h3>
+    <ul> Fórmula de Eyring</ul>
     <p>
         \[
         T_{60} = \frac{24 \ln(10) \cdot V}{c \cdot (-S \ln(1 - \alpha))}
         \]
     </p>
 
-    <h3> Fórmula de Millington</h3>
+    <ul> Fórmula de Millington</ul>
     <p>
         \[
         T_{60} = \frac{24 \ln(10) \cdot V}{c \cdot \sum (-S_i \ln(1 - \alpha_i))}
         \]
-    </p>
-
-    <h2>3. Processamento dos Dados</h2>
-    <p>
-        Os dados das salas são carregados a partir do arquivo <code>rooms.parquet</code>, 
-        e os tempos de reverberação são calculados para cada frequência com base na absorção média registrada no arquivo de absorção.
-        Os resultados são convertidos em um <b>DataFrame do Pandas</b> e exportados para um <b>arquivo CSV</b>, permitindo a análise detalhada 
-        dos tempos de reverberação e outros parâmetros acústicos de cada ambiente.
     </p>
 
 </body>
