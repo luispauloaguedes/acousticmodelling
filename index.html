@@ -334,116 +334,116 @@
             </ul>  
 
             <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parâmetros Acústicos e Cálculo do Tempo de Reverberação</title>
-    <script type="text/javascript" async
-        src="https://polyfill.io/v3/polyfill.min.js?features=es6">
-    </script>
-    <script type="text/javascript" async
-        id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
-</head>
-<body>
-    <h1>Parâmetros Acústicos e Cálculo do Tempo de Reverberação</h1>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Parâmetros Acústicos e Cálculo do Tempo de Reverberação</title>
+            <script type="text/javascript" async
+            src="https://polyfill.io/v3/polyfill.min.js?features=es6">
+            </script>
+            <script type="text/javascript" async
+            id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+            </script>
+            </head>
+            <body>
+            <h1>Parâmetros Acústicos e Cálculo do Tempo de Reverberação</h1>
 
-    <p>
-        O código processa parâmetros acústicos de salas a partir de arquivos contendo informações sobre dimensões e coeficientes de absorção sonora, 
-        calculando os tempos de reverberação (<b>T60</b>) utilizando os modelos de <b>Sabine</b>, <b>Eyring</b> e <b>Millington</b>, 
-        além do <b>NRC (Noise Reduction Coefficient)</b>.
-    </p>
+            <p>
+            O código processa parâmetros acústicos de salas a partir de arquivos contendo informações sobre dimensões e coeficientes de absorção sonora, 
+            calculando os tempos de reverberação (<b>T60</b>) utilizando os modelos de <b>Sabine</b>, <b>Eyring</b> e <b>Millington</b>, 
+            além do <b>NRC (Noise Reduction Coefficient)</b>.
+            </p>
     
-    <ul>
-    <b>1. Absorção Média</b>
-    </ul>
+            <ul>
+            <b>1. Absorção Média</b>
+            </ul>
       
-    <p>
-        A absorção média ponderada das superfícies da sala é calculada por:
-    </p>
-    <p>
-        \[
-        \alpha_{média} = \frac{\sum S_i \alpha_i}{\sum S_i}
-        \]
-    </p>
-    <p>Onde:</p>
-    <ul>
-        <li>\( S_i \) = área de cada superfície</li>
-        <li>\( \alpha_i \) = coeficiente de absorção da superfície</li>
-    </ul>
+            <p>
+            A absorção média ponderada das superfícies da sala é calculada por:
+            </p>
+            <p>
+            \[
+            \alpha_{média} = \frac{\sum S_i \alpha_i}{\sum S_i}
+            \]
+            </p>
+            <p>Onde:</p>
+            <ul>
+            <li>\( S_i \) = área de cada superfície</li>
+            <li>\( \alpha_i \) = coeficiente de absorção da superfície</li>
+            </ul>
 
-    <ul>
-    <b>2. Tempo de Reverberação (T60)</b>
-    </ul>
-    <p>
-        O <b>tempo de reverberação</b> representa o tempo necessário para que o som em um ambiente 
-        <b>diminua em 60 dB</b> após a fonte sonora ser desligada.
-    </p>
+            <ul>
+            <b>2. Tempo de Reverberação (T60)</b>
+            </ul>
+            <p>
+            O <b>tempo de reverberação</b> representa o tempo necessário para que o som em um ambiente 
+            <b>diminua em 60 dB</b> após a fonte sonora ser desligada.
+            </p>
 
-     <ul> Fórmula de Sabine</ul>
-    <p>
-        \[
-        T_{60} = \frac{24 \ln(10) \cdot V}{c \cdot (S \cdot \alpha)}
-        \]
-    </p>
-    <p>Em que:</p>
-    <ul>
-        <li>\( V \) = volume da sala (m³)</li>
-        <li>\( c \) = velocidade do som (m/s)</li>
-        <li>\( S \) = área total das superfícies (m²)</li>
-        <li>\( \alpha \) = coeficiente de absorção médio</li>
-    </ul>
+            <ul> Fórmula de Sabine</ul>
+            <p>
+            \[
+            T_{60} = \frac{24 \ln(10) \cdot V}{c \cdot (S \cdot \alpha)}
+            \]
+            </p>
+            <p>Em que:</p>
+            <ul>
+            <li>\( V \) = volume da sala (m³)</li>
+            <li>\( c \) = velocidade do som (m/s)</li>
+            <li>\( S \) = área total das superfícies (m²)</li>
+            <li>\( \alpha \) = coeficiente de absorção médio</li>
+            </ul>
 
-    <ul> Fórmula de Eyring</ul>
-    <p>
-        \[
-        T_{60} = \frac{24 \ln(10) \cdot V}{c \cdot (-S \ln(1 - \alpha))}
-        \]
-    </p>
+            <ul> Fórmula de Eyring</ul>
+            <p>
+            \[
+            T_{60} = \frac{24 \ln(10) \cdot V}{c \cdot (-S \ln(1 - \alpha))}
+             \]
+            </p>
 
-    <ul> Fórmula de Millington</ul>
-    <p>
-        \[
-        T_{60} = \frac{24 \ln(10) \cdot V}{c \cdot \sum (-S_i \ln(1 - \alpha_i))}
-        \]
-    </p>
+            <ul> Fórmula de Millington</ul>
+            <p>
+            \[
+            T_{60} = \frac{24 \ln(10) \cdot V}{c \cdot \sum (-S_i \ln(1 - \alpha_i))}
+            \]
+           </p>
 
-</body>
-    <ul> 
-        Foi implementado um código para calcular C50, C80 e T60, a partir de sinais de áudio. A função clarity(time, signal, fs, bands) calcula o índice de clareza C50 (para fala) ou C80 (para música), filtrando o sinal de acordo com bandas de oitava e comparando a energia acumulada nos primeiros milissegundos com a energia restante. 
-        As funções c50_from_file(file_path, bands) e c80_from_file(file_path, bands) extraem o índice de clareza diretamente de um arquivo de áudio. Já a função t60_impulse(file_name, bands, rt='t30') estima o tempo de reverberação T60 com diferentes métodos (T30, T20, T10 e EDT), baseando-se no decaimento energético do sinal filtrado em bandas de oitava e ajustando uma regressão linear sobre a curva de energia cumulativa. 
-   </ul>
-        Também foi extraída a distáncia eucliana entre cada microfone e fonte, bem como a Frequência de Schroeder (FS), que se trata de um valor que marca a transição entre dois regimes distintos no comportamento acústico de um ambiente fechado:
-   <ul> 
-        Abaixo da Frequência de Schroeder: O campo sonoro é dominado por modos próprios (modos ressonantes), e o som se comporta de maneira mais discreta e não homogênea. É comum que em baixas frequências haja ressonâncias e acúmulos de energia em certos pontos da sala.
-   </ul>   
-   <ul> 
-       Acima da Frequência de Schroeder: O campo sonoro passa a ser considerado difuso e estocástico. Os modos próprios se sobrepõem de forma densa, e a propagação do som se aproxima mais dos pressupostos da acústica estatística e da reverberação homogênea.
-   </ul>
+           </body>
+           <ul> 
+           Foi implementado um código para calcular C50, C80 e T60, a partir de sinais de áudio. A função clarity(time, signal, fs, bands) calcula o índice de clareza C50 (para fala) ou C80 (para música), filtrando o sinal de acordo com bandas de oitava e comparando a energia acumulada nos primeiros milissegundos com a energia restante. 
+           As funções c50_from_file(file_path, bands) e c80_from_file(file_path, bands) extraem o índice de clareza diretamente de um arquivo de áudio. Já a função t60_impulse(file_name, bands, rt='t30') estima o tempo de reverberação T60 com diferentes métodos (T30, T20, T10 e EDT), baseando-se no decaimento energético do sinal filtrado em bandas de oitava e ajustando uma regressão linear sobre a curva de energia cumulativa. 
+           </ul>
+           Também foi extraída a distáncia eucliana entre cada microfone e fonte, bem como a Frequência de Schroeder (FS), que se trata de um valor que marca a transição entre dois regimes distintos no comportamento acústico de um ambiente fechado:
+           <ul> 
+           Abaixo da Frequência de Schroeder: O campo sonoro é dominado por modos próprios (modos ressonantes), e o som se comporta de maneira mais discreta e não homogênea. É comum que em baixas frequências haja ressonâncias e acúmulos de energia em certos pontos da sala.
+           </ul>   
+           <ul> 
+           Acima da Frequência de Schroeder: O campo sonoro passa a ser considerado difuso e estocástico. Os modos próprios se sobrepõem de forma densa, e a propagação do som se aproxima mais dos pressupostos da acústica estatística e da reverberação homogênea.
+           </ul>
 
-       <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parâmetros Acústicos e Cálculo do Tempo de Reverberação</title>
-    <script type="text/javascript" async
-        src="https://polyfill.io/v3/polyfill.min.js?features=es6">
-    </script>
-    <script type="text/javascript" async
-        id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
-</head>
-<body>
-    <h1>Fórmula da Frequência de Schroeder</h1>
-    <p>A frequência de Schroeder é calculada usando a seguinte equação:</p>
-    <p style="font-size: 10px; font-weight: bold;">
-        \[ F_s = 2000 \times \sqrt{\frac{RT60}{V}} \]
-    </p>
-    <p>Onde:</p>
-    <ul>
-        <li><b>F_s</b>: Frequência de Schroeder (Hz)</li>
-        <li><b>RT60</b>: Tempo de reverberação (s)</li>
-        <li><b>V</b>: Volume da sala (m³)</li>
-    </ul>
-</body>
+           <head>
+           <meta charset="UTF-8">
+           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+           <title>Parâmetros Acústicos e Cálculo do Tempo de Reverberação</title>
+           <script type="text/javascript" async
+           src="https://polyfill.io/v3/polyfill.min.js?features=es6">
+           </script>
+           <script type="text/javascript" async
+           id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+           </script>
+           </head>
+           <body>
+           <h1>Fórmula da Frequência de Schroeder</h1>
+           <p>A frequência de Schroeder é calculada usando a seguinte equação:</p>
+           <p style="font-size: 10px; font-weight: bold;">
+           \[ F_s = 2000 \times \sqrt{\frac{RT60}{V}} \]
+           </p>
+           <p>Onde:</p>
+           <ul>
+           <li><b>\[F_s\]</b>: Frequência de Schroeder (Hz)</li>
+           <li><b>RT60</b>: Tempo de reverberação (s)</li>
+           <li><b>V</b>: Volume da sala (m³)</li>
+           </ul>
+           </body>
 
 
             
