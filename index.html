@@ -419,7 +419,9 @@
            <head>
            <meta charset="UTF-8">
            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-           <title>Cálculo do DRR (Direct-to-Reverberant Ratio)</title>
+           <ul>
+           <b>2. Direct-to-Reverberant Ratio (DRR)</b>
+           </ul>
            <script type="text/javascript" async
            src="https://polyfill.io/v3/polyfill.min.js?features=es6">
            </script>
@@ -654,49 +656,7 @@
             <img src="link-grafico" alt="Gráfico de Treinamento e Validação" style="width: 100%; max-width: 600px;">
         </div>
 
-        <!-- Espaço reservado para Projeto 1 -->
-        <div class="projeto">
-            <h3><a href="link-projeto-1" target="_blank">Projeto 1</a></h3>
-            <p>
-                A ETAPA I: CONFIGURAÇÃO DOS AMBIENTES; ETAPA II: IMPLEMENTAÇÃO E TREINAMENTO DOS MODELOS; ETAPA III: TESTE DOS MODELOS; ETAPA IV: AVALIAÇÃO DAS MÉTRICAS DOS MODELOS.
-            <ul>
-               <li>ETAPA I: CONFIGURAÇÃO DOS AMBIENTES</li>
-            </ul>  
-            
-            <ul>
-               <li>PASSO 1: GERANDO AS CONFIGURAÇÕES DA SALA</li>
-            </ul>   
-                Inicialmente, as dimensões das salas foram definidas aleatoriamente dentro de um intervalo preestabelecido. O comprimento e a largura variaram entre 3 e 12 metros, enquanto a altura assumiu valores entre 2,5 e 4,5 metros. Esses valores foram arredondados para uma casa decimal para garantir maior precisão nas simulações.
-                Além das dimensões, foram atribuídos coeficientes de difusão para cada superfície da sala. O mesmo valor foi aplicado uniformemente a todas as superfícies e foi sorteado dentro de um intervalo entre 0,2 e 1. Esse coeficiente foi gerado para seis superfícies distintas: quatro paredes, teto e chão. Os valores foram armazenados de acordo com a frequência correspondente, considerando seis faixas padronizadas: 125 Hz, 250 Hz, 500 Hz, 1000 Hz, 2000 Hz e 4000 Hz.
-                Para determinar os coeficientes de absorção, com o fim de definir perfis distintos para paredes, teto e chão, foi utilizado um processo probabilístico apresentado em  <a href="https://drive.google.com/file/d/11VNCIks217v6AZXI_0JtuiTwnnlTSDv-/view?usp=drive_link" download><button>Mean Absorption Estimation from Room Impulse Responses using Virtually-Supervised Learning</button></a></p> Em alguns casos, um único valor foi atribuído a todas as superfícies de um mesmo tipo, enquanto em outros, valores diferenciados foram gerados para cada frequência. Esses coeficientes foram estabelecidos a partir de intervalos que variaram conforme o tipo de superfície, refletindo as propriedades acústicas de materiais comuns.
-                As paredes puderam apresentar coeficientes de absorção homogêneos ou diferenciados por frequência, variando entre valores baixos, típicos de materiais reflexivos, e valores mais elevados, condizentes com superfícies mais absorventes. O teto e o chão seguiram uma lógica semelhante, com intervalos de absorção distintos de acordo com materiais típicos desses elementos estruturais.
-                Dessa forma, o código gerou automaticamente um conjunto de parâmetros realistas para diferentes configurações de salas, permitindo a simulação de ambientes acústicos diversos com base nas propriedades físicas de suas superfícies.
-
-             <ul>
-               <li>PASSO 2: GERANDO AS CONFIGURAÇÕES DOS RECEPTORES </li>
-            </ul>
-                A classe 'util_receiver' é responsável por definir e gerar arranjos de microfones em um ambiente tridimensional. Inicialmente, ela armazena os receptores em um dicionário ('dic_receiver'). O método 'mic_defination_array' calcula as posições de dois microfones a partir de um ponto central (barycenter), aplicando uma matriz de rotação para posicioná-los a uma distância fixa de 22.5 cm. O método generate_receivers_rooms distribui aleatoriamente um conjunto de receptores dentro de uma sala, garantindo uma distância mínima das paredes, além de gerar ângulos aleatórios de orientação (yaw, pitch e roll). Ele utiliza o método 'rotation_matrix', que constrói uma matriz de rotação tridimensional com base nesses ângulos, 
-                permitindo a correta orientação dos microfones no espaço. Os resultados incluem as posições dos microfones, os barycenters e os ângulos de rotação, tornando essa classe útil para simulações acústicas e análise de propagação sonora.
-
-             <ul>
-               <li>PASSO 3: GERANDO AS CONFIGURAÇÕES DAS FONTES</li>
-             </ul>
-                A classe 'util_source' é responsável por gerar fontes sonoras dentro de uma sala tridimensional, garantindo posições seguras e evitando sobreposição com o barycenter. Ela contém uma lista de descrições de padrões de captação de microfones, incluindo opções como omnidirecional, cardióide e bidirecional. O método 'generate_source_room' cria fontes reais na sala, garantindo que pelo menos uma delas seja omnidirecional 
-                e posicionando as demais aleatoriamente com diferentes orientações (yaw, pitch e roll). O método 'fake_source_room' realiza um processo semelhante para fontes artificiais, garantindo uma distância mínima entre elas e o barycenter. Ambos os métodos utilizam 'generate_safe_coordinates', que assegura que as fontes estejam dentro dos limites da sala e respeitem uma distância mínima do barycenter antes de serem posicionadas. 
-                Essa abordagem permite a simulação de fontes sonoras em diferentes condições espaciais para análise acústica.
-            <ul>
-               <li>PASSO 4: COMPILANDO AS INFORMAÇÕES</li>
-             </ul>
-               A classe 'conf_files' combina funcionalidades das classes 'util_room', 'util_receiver' e 'util_source' para gerar arquivos de configuração que descrevem salas acústicas, receptores (microfones) e fontes sonoras. No método '__init__', ela recebe o número de salas e o nome do conjunto de dados, inicializando instâncias auxiliares e chamando os métodos 'params_file()' e 'room_file()'. O método 'params_file()' gera um arquivo YAML 
-               contendo os parâmetros da simulação, como taxa de amostragem (48 kHz), ordem de reflexão, e número de raios para o modelo de traçado de raios difuso. O método 'room_file()' cria dicionários com as propriedades de cada sala, incluindo dimensões, coeficientes de absorção e difusão, além da distribuição de receptores e fontes sonoras. Para cada sala, ele posiciona cinco receptores garantindo uma distância mínima das paredes, gera fontes reais e artificiais, 
-               e armazena as configurações em arquivos YAML separados para salas, receptores, fontes e fontes artificiais de ruído. A abordagem facilita a simulação e análise acústica automatizada.
-            
-             <ul>
-               <li>PASSO 5: GERANDO E ARMAZENADOS AS SALAS</li>
-             </ul>
-               A chamada 'conf_files(1000, "test")' cria e configura automaticamente 1000 salas acústicas para simulação, gerando arquivos YAML detalhados com parâmetros da sala, receptores e fontes sonoras. Durante a execução, a classe define dimensões aleatórias para cada sala, calcula coeficientes de absorção e difusão, posiciona cinco receptores respeitando uma distância mínima das paredes e distribui fontes sonoras reais e artificiais, garantindo ao menos uma omnidirecional. 
-               Os dados são organizados em arquivos YAML, incluindo conf_sim_params.yml para parâmetros da simulação, conf_room_setup_2.yml com detalhes das salas, conf_receivers_2.yml para microfones, conf_source_2.yml para fontes reais e conf_noise_source_2.yml para fontes artificiais, permitindo sua aplicação em estudos de propagação sonora e modelagem acústica.
-            
+      
     </section>
 
     
