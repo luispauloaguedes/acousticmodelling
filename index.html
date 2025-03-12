@@ -408,7 +408,10 @@
     </p>
 
 </body>
-
+    <ul> 
+        Também foi implementado um código para calcular C50, C80 e T60, a partir de sinais de áudio. A função clarity(time, signal, fs, bands) calcula o índice de clareza C50 (para fala) ou C80 (para música), filtrando o sinal de acordo com bandas de oitava e comparando a energia acumulada nos primeiros milissegundos com a energia restante. 
+        As funções c50_from_file(file_path, bands) e c80_from_file(file_path, bands) extraem o índice de clareza diretamente de um arquivo de áudio. Já a função t60_impulse(file_name, bands, rt='t30') estima o tempo de reverberação T60 com diferentes métodos (T30, T20, T10 e EDT), baseando-se no decaimento energético do sinal filtrado em bandas de oitava e ajustando uma regressão linear sobre a curva de energia cumulativa. Essas funções são essenciais para análise da qualidade acústica de ambientes, permitindo caracterizar a propagação e a reverberação do som a partir de gravações de respostas ao impulso.
+   </ul>
            
 
 
