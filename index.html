@@ -412,7 +412,38 @@
            Foi implementado um código para calcular C50, C80 e T60, a partir de sinais de áudio. A função clarity(time, signal, fs, bands) calcula o índice de clareza C50 (para fala) ou C80 (para música), filtrando o sinal de acordo com bandas de oitava e comparando a energia acumulada nos primeiros milissegundos com a energia restante. 
            As funções c50_from_file(file_path, bands) e c80_from_file(file_path, bands) extraem o índice de clareza diretamente de um arquivo de áudio. Já a função t60_impulse(file_name, bands, rt='t30') estima o tempo de reverberação T60 com diferentes métodos (T30, T20, T10 e EDT), baseando-se no decaimento energético do sinal filtrado em bandas de oitava e ajustando uma regressão linear sobre a curva de energia cumulativa. 
            </ul>
-           Também foi extraída a distáncia eucliana entre cada microfone e fonte, bem como a Frequência de Schroeder (FS), que se trata de um valor que marca a transição entre dois regimes distintos no comportamento acústico de um ambiente fechado:
+           Também foi extraída a distáncia eucliana entre cada microfone e fonte, e o DRR (Direct-to-Reverberant Ratio), conforme a seguir:
+
+           <!DOCTYPE html>
+           <html>
+           <head>
+           <meta charset="UTF-8">
+           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+           <title>Cálculo do DRR (Direct-to-Reverberant Ratio)</title>
+           <script type="text/javascript" async
+           src="https://polyfill.io/v3/polyfill.min.js?features=es6">
+           </script>
+           <script type="text/javascript" async
+           id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+           </script>
+           </head>
+           <body>
+           <h1>Fórmula do Cálculo do DRR (Direct-to-Reverberant Ratio)</h1>
+           <p>O DRR é calculado utilizando a seguinte equação:</p>
+           <p style="font-size: 15px; font-weight: bold;">
+           \[ DRR = 10 \log_{10} \left( \frac{E_{direct}}{E_{reverberant}} \right) \]
+           </p>
+           <p>Onde:</p>
+           <ul>
+           <li><b>DRR</b>: Direct-to-Reverberant Ratio (dB)</li>
+           <li><b>E_{direct}</b>: Energia da parte direta do sinal</li>
+           <li><b>E_{reverberant}</b>: Energia da parte reverberante do sinal</li>
+           </ul>
+           </body>
+           </html>
+
+ 
+           Também foi calculada a Frequência de Schroeder (FS), que se trata de um valor que marca a transição entre dois regimes distintos no comportamento acústico de um ambiente fechado:
            <ul> 
            Abaixo da Frequência de Schroeder: O campo sonoro é dominado por modos próprios (modos ressonantes), e o som se comporta de maneira mais discreta e não homogênea. É comum que em baixas frequências haja ressonâncias e acúmulos de energia em certos pontos da sala.
            </ul>   
@@ -439,7 +470,7 @@
            </p>
            <p>Onde:</p>
            <ul>
-           <li><b>\F_s\</b>: Frequência de Schroeder (Hz)</li>
+           <li><b>F_s</b>: Frequência de Schroeder (Hz)</li>
            <li><b>RT60</b>: Tempo de reverberação (s)</li>
            <li><b>V</b>: Volume da sala (m³)</li>
            </ul>
