@@ -556,6 +556,15 @@
            <ul> 
            Sendo que a variável room_name é a chave primária entre o arquivo .csv com os rótulos e os tensores criados para a entrada no modelo RESNET-50.   
            </ul>
+
+           <ul> 
+           <li>ETAPA VI: GERAÇÃO DE ESPECTROGRAMAS</li>
+           </ul>  
+
+            <ul> 
+            Os espectrogramas gerados possuem dimensões de <b>224x224 pixels</b> e são salvos no formato <b>RGB</b>, tornando-os adequados para entrada em modelos de <b>aprendizado profundo</b>, especialmente redes neurais convolucionais (<b>CNNs</b>) que esperam três canais de entrada. A conversão para RGB é feita a partir da representação em escala de cores do mapa <b>"inferno"</b>, que destaca melhor as variações de intensidade do sinal. O cálculo do espectrograma é realizado por meio da <b>Transformada de Fourier de Curto Prazo (STFT)</b> utilizando a função <code>spectrogram()</code> da <b>SciPy</b>, com uma janela de <b>256 amostras</b> e sobreposição de <b>128 amostras</b>, garantindo uma boa resolução tempo-frequência. Além disso, os valores do espectrograma são convertidos para a escala logarítmica em <b>decibéis (dB)</b>, utilizando a equação \( 10 \log_{10}(Sxx + 1e-10) \), para enfatizar detalhes sutis do sinal e reduzir discrepâncias entre componentes de baixa e alta amplitude.
+            </ul>
+
      
 
             
