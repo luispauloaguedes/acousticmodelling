@@ -409,16 +409,82 @@
 
 </body>
     <ul> 
-        Também foi implementado um código para calcular C50, C80 e T60, a partir de sinais de áudio. A função clarity(time, signal, fs, bands) calcula o índice de clareza C50 (para fala) ou C80 (para música), filtrando o sinal de acordo com bandas de oitava e comparando a energia acumulada nos primeiros milissegundos com a energia restante. 
+        Foi implementado um código para calcular C50, C80 e T60, a partir de sinais de áudio. A função clarity(time, signal, fs, bands) calcula o índice de clareza C50 (para fala) ou C80 (para música), filtrando o sinal de acordo com bandas de oitava e comparando a energia acumulada nos primeiros milissegundos com a energia restante. 
         As funções c50_from_file(file_path, bands) e c80_from_file(file_path, bands) extraem o índice de clareza diretamente de um arquivo de áudio. Já a função t60_impulse(file_name, bands, rt='t30') estima o tempo de reverberação T60 com diferentes métodos (T30, T20, T10 e EDT), baseando-se no decaimento energético do sinal filtrado em bandas de oitava e ajustando uma regressão linear sobre a curva de energia cumulativa. 
    </ul>
-           
+        Também foi extraída a distáncia eucliana entre cada microfone e fonte, bem como a Frequência de Schroeder (FS), que se trata de um valor que marca a transição entre dois regimes distintos no comportamento acústico de um ambiente fechado:
+   <ul> 
+        Abaixo da Frequência de Schroeder: O campo sonoro é dominado por modos próprios (modos ressonantes), e o som se comporta de maneira mais discreta e não homogênea. É comum que em baixas frequências haja ressonâncias e acúmulos de energia em certos pontos da sala.
+        Acima da Frequência de Schroeder: O campo sonoro passa a ser considerado difuso e estocástico. Os modos próprios se sobrepõem de forma densa, e a propagação do som se aproxima mais dos pressupostos da acústica estatística e da reverberação homogênea.
+   </ul>
+        Ao final do processo de anotação do conjunto de dados, obteve-se o seguintes rótulos em .csv:
 
+    <ul>
+    <li>room_id</li>
+    <li>File</li>
+    <li>C50_125Hz</li>
+    <li>C80_125Hz</li>
+    <li>T60_T30_125Hz</li>
+    <li>C50_250Hz</li>
+    <li>C80_250Hz</li>
+    <li>T60_T30_250Hz</li>
+    <li>C50_500Hz</li>
+    <li>C80_500Hz</li>
+    <li>T60_T30_500Hz</li>
+    <li>C50_1000Hz</li>
+    <li>C80_1000Hz</li>
+    <li>T60_T30_1000Hz</li>
+    <li>C50_2000Hz</li>
+    <li>C80_2000Hz</li>
+    <li>T60_T30_2000Hz</li>
+    <li>C50_4000Hz</li>
+    <li>C80_4000Hz</li>
+    <li>T60_T30_4000Hz</li>
+    <li>Dimensions</li>
+    <li>Temperature (°C)</li>
+    <li>Humidity</li>
+    <li>Área Superficial (m²)</li>
+    <li>Volume (m³)</li>
+    <li>NRC</li>
+    <li>Coeficiente_Absorcao_125_L_1</li>
+    <li>Coeficiente_Absorcao_125_L_2</li>
+    <li>Coeficiente_Absorcao_125_L_3</li>
+    <li>Coeficiente_Absorcao_125_L_4</li>
+    <li>Coeficiente_Absorcao_125_L_5</li>
+    <li>Coeficiente_Absorcao_125_L_6</li>
+    <li>Coeficiente_Absorcao_250_L_1</li>
+    <li>Coeficiente_Absorcao_250_L_2</li>
+    <li>Coeficiente_Absorcao_250_L_3</li>
+    <li>Coeficiente_Absorcao_250_L_4</li>
+    <li>Coeficiente_Absorcao_250_L_5</li>
+    <li>Coeficiente_Absorcao_250_L_6</li>
+    <li>Coeficiente_Absorcao_500_L_1</li>
+    <li>Coeficiente_Absorcao_500_L_2</li>
+    <li>Coeficiente_Absorcao_500_L_3</li>
+    <li>Coeficiente_Absorcao_500_L_4</li>
+    <li>Coeficiente_Absorcao_500_L_5</li>
+    <li>Coeficiente_Absorcao_500_L_6</li>
+    <li>Coeficiente_Absorcao_1000_L_1</li>
+    <li>Coeficiente_Absorcao_1000_L_2</li>
+    <li>Coeficiente_Absorcao_1000_L_3</li>
+    <li>Coeficiente_Absorcao_1000_L_4</li>
+    <li>Coeficiente_Absorcao_1000_L_5</li>
+    <li>Coeficiente_Absorcao_1000_L_6</li>
+    <li>Coeficiente_Absorcao_2000_L_1</li>
+    <li>Coeficiente_Absorcao_2000_L_2</li>
+    <li>Coeficiente_Absorcao_2000_L_3</li>
+    <li>Coeficiente_Absorcao_2000_L_4</li>
+    <li>Coeficiente_Absorcao_2000_L_5</li>
+    <li>Coeficiente_Absorcao_2000_L_6</li>
+    <li>Coeficiente_Absorcao_4000_L_1</li>
+    <li>Coeficiente_Absorcao_4000_L_2</li>
+    <li>Coeficiente_Absorcao_4000_L_3</li>
+    <li>Coeficiente_Absorcao_4000_L_4</li>
+    <li>Coeficiente_Absorcao_4000_L_5</li>
+    <li>Coeficiente_Absorcao_4000_L_6</li>
+    <li>room_name</li>
+    </ul>
 
-
-            
-   
-   
 
 
 
