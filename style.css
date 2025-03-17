@@ -245,21 +245,6 @@ header {
 }
 
 
-/* Cabeçalho fixo responsivo */
-header {
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    color: white;
-    padding: 15px 20px;
-    text-align: center;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    transition: all 0.3s ease-in-out;
-}
-
-/* Demais estilos já existentes ... */
-
 /* Dropdown container para a aba Disciplinas */
 nav ul li.dropdown {
     position: relative;
