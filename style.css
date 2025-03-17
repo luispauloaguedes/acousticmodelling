@@ -28,8 +28,6 @@ body {
     }
 }
 
-
-
 /* Posiciona o botão de troca de idioma no canto superior direito */
 .language-switch {
     position: absolute;
@@ -39,7 +37,7 @@ body {
     gap: 10px;
 }
 
-/* Estilização dos botões */
+/* Estilização dos botões de idioma */
 .language-switch a {
     text-decoration: none;
     color: white;
@@ -51,11 +49,10 @@ body {
     transition: background 0.3s ease;
 }
 
-/* Efeito hover */
+/* Efeito hover nos botões de idioma */
 .language-switch a:hover {
     background: #34495e;
 }
-
 
 /* Cabeçalho fixo responsivo */
 header {
@@ -103,6 +100,46 @@ nav ul li a:hover {
     background: rgba(255, 255, 255, 0.2);
 }
 
+/* Dropdown container para a aba Disciplinas */
+nav ul li.dropdown {
+    position: relative;
+}
+
+/* Dropdown content (oculto por padrão) */
+nav ul li .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 180px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    padding: 0;
+    margin: 0;
+    z-index: 1001;
+}
+
+/* Itens do dropdown */
+nav ul li .dropdown-content li {
+    list-style: none;
+}
+
+/* Estilo dos links do dropdown */
+nav ul li .dropdown-content li a {
+    color: #333;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Efeito hover nos links do dropdown */
+nav ul li .dropdown-content li a:hover {
+    background: #ecf0f1;
+}
+
+/* Exibir o dropdown ao passar o mouse */
+nav ul li.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 /* Seções principais */
 section {
     max-width: 900px;
@@ -114,7 +151,7 @@ section {
     text-align: center;
 }
 
-/* Melhorar espaçamento */
+/* Melhorar espaçamento das seções */
 section h2 {
     color: #2c3e50;
     border-bottom: 3px solid #2c3e50;
@@ -183,7 +220,6 @@ section h2 {
     text-align: center;
 }
 
-/* Melhor alinhamento */
 #contato ul {
     list-style: none;
     padding: 0;
@@ -200,7 +236,6 @@ section h2 {
     margin: 15px 0;
 }
 
-/* Ícones ajustados */
 #contato ul li img {
     width: 24px;
     height: 24px;
@@ -219,7 +254,7 @@ section h2 {
     text-decoration: underline;
 }
 
-/* Melhorar responsividade do rodapé */
+/* Rodapé */
 footer {
     background: #2c3e50;
     color: white;
@@ -227,60 +262,4 @@ footer {
     padding: 15px;
     margin-top: 40px;
     font-size: 14px;
-}
-
-quero que coloque em:
-
-/* Cabeçalho fixo responsivo */
-header {
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    color: white;
-    padding: 15px 20px;
-    text-align: center;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    transition: all 0.3s ease-in-out;
-}
-
-
-/* Dropdown container para a aba Disciplinas */
-nav ul li.dropdown {
-    position: relative;
-}
-
-/* Dropdown content (oculto por padrão) */
-nav ul li .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 180px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    padding: 0;
-    margin: 0;
-    z-index: 1001;
-}
-
-/* Itens do dropdown */
-nav ul li .dropdown-content li {
-    list-style: none;
-}
-
-/* Estilo dos links do dropdown */
-nav ul li .dropdown-content li a {
-    color: #333;
-    padding: 10px 15px;
-    text-decoration: none;
-    display: block;
-}
-
-/* Efeito hover nos links do dropdown */
-nav ul li .dropdown-content li a:hover {
-    background: #ecf0f1;
-}
-
-/* Exibir o dropdown ao passar o mouse */
-nav ul li.dropdown:hover .dropdown-content {
-    display: block;
 }
