@@ -125,7 +125,7 @@ nav ul li .dropdown-content li {
 /* Estilo dos links do dropdown */
 nav ul li .dropdown-content li a {
     color: #333;
-    padding: 10px 15px;
+    padding: 10px 12px;
     text-decoration: none;
     display: block;
 }
